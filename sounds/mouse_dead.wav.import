@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/mouse_dead.wav-9b44873b0277f82acb1a7c04c67f7af0.sample"
+
+[deps]
+
+source_file="res://sounds/mouse_dead.wav"
+dest_files=[ "res://.import/mouse_dead.wav-9b44873b0277f82acb1a7c04c67f7af0.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
