@@ -102,9 +102,6 @@ func _on_CmdLineEdit_text_entered(new_text):
 	if new_text != "":
 		emit_signal("command_entered", new_text)
 		cmd_line_edit.text = ""
-		
-		add_label(new_text)
-		add_history(new_text)
 
 func _on_CmdLineEdit_gui_input(event):
 	if event is InputEventKey:
