@@ -8,9 +8,32 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "Node",
+"class": "ClientProxy",
+"language": "GDScript",
+"path": "res://scripts/ClientProxy.gd"
+}, {
+"base": "Node",
+"class": "NetworkManager",
+"language": "GDScript",
+"path": "res://scripts/NetworkManager.gd"
+}, {
+"base": "NetworkManager",
+"class": "NetworkManagerClient",
+"language": "GDScript",
+"path": "res://scripts/NetworkManagerClient.gd"
+}, {
+"base": "NetworkManager",
+"class": "NetworkManagerServer",
+"language": "GDScript",
+"path": "res://scripts/NetworkManagerServer.gd"
+} ]
 _global_script_class_icons={
-
+"ClientProxy": "",
+"NetworkManager": "",
+"NetworkManagerClient": "",
+"NetworkManagerServer": ""
 }
 
 [application]
