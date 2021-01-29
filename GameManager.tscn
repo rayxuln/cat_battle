@@ -145,9 +145,7 @@ __meta__ = {
 }
 
 [node name="HistoryScrollContainer" type="ScrollContainer" parent="UILayer/Control/ChatDipaly/CmdVBoxContainer"]
-margin_top = 12.0
 margin_right = 556.0
-margin_bottom = 12.0
 grow_vertical = 0
 size_flags_horizontal = 11
 size_flags_vertical = 10
@@ -162,9 +160,9 @@ size_flags_horizontal = 11
 size_flags_vertical = 8
 
 [node name="CmdLineEdit" type="LineEdit" parent="UILayer/Control/ChatDipaly/CmdVBoxContainer"]
-margin_top = 16.0
+margin_top = 4.0
 margin_right = 556.0
-margin_bottom = 62.0
+margin_bottom = 50.0
 
 [node name="HUD" type="Control" parent="UILayer/Control"]
 anchor_right = 0.438

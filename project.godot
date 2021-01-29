@@ -15,6 +15,11 @@ _global_script_classes=[ {
 "path": "res://scripts/ClientProxy.gd"
 }, {
 "base": "Node",
+"class": "LinkingContext",
+"language": "GDScript",
+"path": "res://scripts/LinkingContext.gd"
+}, {
+"base": "Node",
 "class": "NetworkManager",
 "language": "GDScript",
 "path": "res://scripts/NetworkManager.gd"
@@ -31,6 +36,7 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "ClientProxy": "",
+"LinkingContext": "",
 "NetworkManager": "",
 "NetworkManagerClient": "",
 "NetworkManagerServer": ""

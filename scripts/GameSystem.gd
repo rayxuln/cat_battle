@@ -7,7 +7,7 @@ signal game_stop
 var game_manager:Node = null
 var network_manager = null
 var game_console:Node = null
-var linking_context = null
+var linking_context:LinkingContext = null
 
 var main_player_manger:Node = null
 var player_name = "asdasd"
@@ -21,6 +21,9 @@ func _ready():
 	game_console = preload("res://scripts/GameConsole.gd").new()
 	game_console.name = "GameConsole"
 	add_child(game_console)
+	
+	linking_context = LinkingContext.new()
+	
 
 #----- Methods -----
 func start_as_server(p_name, port:int):
@@ -57,7 +60,10 @@ func start_as_client(p_name, address:String, port:int):
 	add_child(network_manager)
 
 func load_world():
-	pass
+	var w = load("res://world/test/World.tscn").instance()
+	game_manager.add_child(w)
+	game_manager.world = w
+	game_manager.move_child(w, 0)
 
 func start_game():
 	load_world()
@@ -106,6 +112,20 @@ func send_boardcast(s):
 func send_cmd(s, sender=null):
 	game_console.send_cmd(s, sender)
 #----- RPCs -----
+remote func rpc_add_node(resource_path, nid):
+	if linking_context.get_node(nid):
+		return
+	var n = load(resource_path).instance()
+	n.get_node("NetworkIdentifier").network_id = nid
+	
+	linking_context.add_node(n, nid)
+	game_manager.world.add_child(n)
+
+remote func rpc_remove_node(nid):
+	var n = linking_context.get_node(nid)
+	if n:
+		n.queue_free()
+
 #----- Signals -----
 func _on_connected_to_server():
 	game_manager.hide_ui()
