@@ -1,9 +1,17 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://ui/titile.png" type="Texture" id=1]
 [ext_resource path="res://default_font.tres" type="DynamicFont" id=2]
 [ext_resource path="res://ui/ChatDipaly.gd" type="Script" id=3]
 [ext_resource path="res://scripts/GameManager.gd" type="Script" id=4]
+[ext_resource path="res://ui/cat_head.png" type="Texture" id=5]
+[ext_resource path="res://ui/SummaryPanel.gd" type="Script" id=6]
+[ext_resource path="res://ui/HeartGroup.gd" type="Script" id=7]
+[ext_resource path="res://ui/x.png" type="Texture" id=8]
+[ext_resource path="res://ui/mouse_head.png" type="Texture" id=9]
+[ext_resource path="res://ui/PausePanel.gd" type="Script" id=10]
+[ext_resource path="res://ui/ConnectToHostDialog.gd" type="Script" id=11]
+[ext_resource path="res://ui/CreateHostDialog.gd" type="Script" id=12]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 1, 0.74902, 0, 1 )
@@ -16,6 +24,18 @@ default_font = ExtResource( 2 )
 
 [sub_resource type="StyleBoxFlat" id=4]
 bg_color = Color( 0.196078, 0.196078, 0.196078, 0.752941 )
+
+[sub_resource type="Theme" id=5]
+default_font = ExtResource( 2 )
+
+[sub_resource type="Theme" id=6]
+default_font = ExtResource( 2 )
+
+[sub_resource type="Theme" id=7]
+default_font = ExtResource( 2 )
+
+[sub_resource type="Theme" id=8]
+default_font = ExtResource( 2 )
 
 [node name="GameManager" type="Node"]
 script = ExtResource( 4 )
@@ -138,6 +158,325 @@ size_flags_vertical = 8
 margin_top = 16.0
 margin_right = 556.0
 margin_bottom = 62.0
+
+[node name="HUD" type="Control" parent="UILayer/Control"]
+anchor_right = 0.438
+anchor_bottom = 0.302
+margin_right = 0.487976
+margin_bottom = -0.200012
+mouse_filter = 2
+theme = SubResource( 5 )
+
+[node name="Group1" type="Control" parent="UILayer/Control/HUD"]
+anchor_right = 1.0
+anchor_bottom = 0.409
+margin_bottom = -0.0289993
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CatHead" type="TextureRect" parent="UILayer/Control/HUD/Group1"]
+anchor_right = 0.205
+anchor_bottom = 1.0
+margin_right = -0.0450058
+mouse_filter = 2
+texture = ExtResource( 5 )
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlayerNameLabel" type="Label" parent="UILayer/Control/HUD/Group1"]
+anchor_left = 0.217
+anchor_top = 0.126
+anchor_right = 0.831
+anchor_bottom = 0.464
+margin_left = 0.0950394
+margin_top = 0.0127611
+margin_right = -0.590973
+margin_bottom = 0.000759125
+text = "33123"
+valign = 1
+
+[node name="HeartGroup" type="HBoxContainer" parent="UILayer/Control/HUD/Group1"]
+anchor_left = 0.191
+anchor_top = 0.562
+anchor_right = 0.191
+anchor_bottom = 0.562
+margin_left = -2.75901
+margin_top = -18.9341
+margin_right = 361.241
+margin_bottom = 14.0659
+mouse_filter = 2
+custom_constants/separation = -30
+script = ExtResource( 7 )
+
+[node name="Group2" type="Control" parent="UILayer/Control/HUD"]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -1.5
+mouse_filter = 2
+
+[node name="MouseHead" type="TextureRect" parent="UILayer/Control/HUD/Group2"]
+margin_right = 46.0
+margin_bottom = 46.0
+mouse_filter = 2
+texture = ExtResource( 9 )
+expand = true
+stretch_mode = 6
+
+[node name="MouseHeadWithX" type="TextureRect" parent="UILayer/Control/HUD/Group2"]
+margin_left = 55.9197
+margin_top = 9.45985
+margin_right = 84.9197
+margin_bottom = 38.4598
+mouse_filter = 2
+texture = ExtResource( 8 )
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MouseCountLabel" type="Label" parent="UILayer/Control/HUD/Group2"]
+margin_left = 97.4433
+margin_top = 3.67081
+margin_right = 137.443
+margin_bottom = 39.6708
+text = "86"
+valign = 1
+
+[node name="SummaryPanel" type="Panel" parent="UILayer/Control"]
+visible = false
+anchor_left = 0.177
+anchor_top = 0.109
+anchor_right = 0.823
+anchor_bottom = 0.891
+margin_left = -0.248001
+margin_top = 0.0999985
+margin_right = 0.247986
+margin_bottom = -0.100037
+theme = SubResource( 6 )
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MainMenuButton" type="Button" parent="UILayer/Control/SummaryPanel"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 37.8403
+margin_top = -59.6588
+margin_right = 169.84
+margin_bottom = -17.6588
+text = "返回主菜单"
+
+[node name="RestartButton" type="Button" parent="UILayer/Control/SummaryPanel"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -155.545
+margin_top = -60.4998
+margin_right = -23.5452
+margin_bottom = -18.4998
+text = "再来一局"
+
+[node name="TitileLabel" type="Label" parent="UILayer/Control/SummaryPanel"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -331.0
+margin_right = 330.0
+margin_bottom = 36.0
+text = "你赢了/你输了"
+align = 1
+valign = 1
+
+[node name="MsgLabel" type="Label" parent="UILayer/Control/SummaryPanel"]
+anchor_left = 0.015
+anchor_top = 0.132
+anchor_right = 1.0
+anchor_bottom = 0.834
+margin_left = 0.0699997
+margin_top = 0.0919991
+margin_right = -9.0
+margin_bottom = -0.146027
+text = "sadasdsad
+asd
+sad
+as
+das
+d
+asd"
+
+[node name="PausePanel" type="Panel" parent="UILayer/Control"]
+visible = false
+anchor_left = 0.329
+anchor_top = 0.396
+anchor_right = 0.671
+anchor_bottom = 0.604
+margin_left = 0.103973
+margin_top = -0.100021
+margin_right = -0.104004
+margin_bottom = 0.0999756
+theme = SubResource( 7 )
+script = ExtResource( 10 )
+
+[node name="TitleLabel" type="Label" parent="UILayer/Control/PausePanel"]
+anchor_right = 1.0
+margin_bottom = 36.0
+text = "你想干啥?"
+align = 1
+valign = 1
+
+[node name="MainMenuButton" type="Button" parent="UILayer/Control/PausePanel"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 18.4997
+margin_top = -56.2952
+margin_right = 150.5
+margin_bottom = -14.2952
+text = "返回主菜单"
+
+[node name="RestartButton" type="Button" parent="UILayer/Control/PausePanel"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -148.818
+margin_top = -57.1361
+margin_right = -16.8179
+margin_bottom = -15.1361
+text = "点错了"
+
+[node name="CreateHostDialog" type="AcceptDialog" parent="UILayer/Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -185.0
+margin_top = -61.0
+margin_right = 185.0
+margin_bottom = 101.0
+theme = SubResource( 8 )
+window_title = "提示！"
+script = ExtResource( 12 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayer/Control/CreateHostDialog"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = -8.0
+margin_bottom = -58.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UILayer/Control/CreateHostDialog/VBoxContainer"]
+margin_right = 354.0
+margin_bottom = 46.0
+
+[node name="Label" type="Label" parent="UILayer/Control/CreateHostDialog/VBoxContainer/HBoxContainer"]
+margin_top = 5.0
+margin_right = 72.0
+margin_bottom = 41.0
+text = "端口："
+
+[node name="PortLineEdit" type="LineEdit" parent="UILayer/Control/CreateHostDialog/VBoxContainer/HBoxContainer"]
+margin_left = 76.0
+margin_right = 354.0
+margin_bottom = 46.0
+size_flags_horizontal = 3
+text = "das"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="UILayer/Control/CreateHostDialog/VBoxContainer"]
+margin_top = 50.0
+margin_right = 354.0
+margin_bottom = 96.0
+
+[node name="Label" type="Label" parent="UILayer/Control/CreateHostDialog/VBoxContainer/HBoxContainer2"]
+margin_top = 5.0
+margin_right = 96.0
+margin_bottom = 41.0
+text = "玩家名："
+
+[node name="PlayerNameLineEdit" type="LineEdit" parent="UILayer/Control/CreateHostDialog/VBoxContainer/HBoxContainer2"]
+margin_left = 100.0
+margin_right = 354.0
+margin_bottom = 46.0
+size_flags_horizontal = 3
+
+[node name="ConnectToHostDialog" type="AcceptDialog" parent="UILayer/Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -185.0
+margin_top = -61.0
+margin_right = 185.0
+margin_bottom = 101.0
+theme = SubResource( 8 )
+window_title = "提示！"
+script = ExtResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayer/Control/ConnectToHostDialog"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = -8.0
+margin_bottom = -58.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UILayer/Control/ConnectToHostDialog/VBoxContainer"]
+margin_right = 354.0
+margin_bottom = 46.0
+
+[node name="Label" type="Label" parent="UILayer/Control/ConnectToHostDialog/VBoxContainer/HBoxContainer"]
+margin_top = 5.0
+margin_right = 72.0
+margin_bottom = 41.0
+text = "地址："
+
+[node name="AddressLineEdit" type="LineEdit" parent="UILayer/Control/ConnectToHostDialog/VBoxContainer/HBoxContainer"]
+margin_left = 76.0
+margin_right = 354.0
+margin_bottom = 46.0
+size_flags_horizontal = 3
+text = "192.168.1.3"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="UILayer/Control/ConnectToHostDialog/VBoxContainer"]
+margin_top = 50.0
+margin_right = 354.0
+margin_bottom = 96.0
+
+[node name="Label" type="Label" parent="UILayer/Control/ConnectToHostDialog/VBoxContainer/HBoxContainer2"]
+margin_top = 5.0
+margin_right = 96.0
+margin_bottom = 41.0
+text = "玩家名："
+
+[node name="PlayerNameLineEdit" type="LineEdit" parent="UILayer/Control/ConnectToHostDialog/VBoxContainer/HBoxContainer2"]
+margin_left = 100.0
+margin_right = 354.0
+margin_bottom = 46.0
+size_flags_horizontal = 3
 [connection signal="command_entered" from="UILayer/Control/ChatDipaly" to="." method="_on_ChatDipaly_command_entered"]
 [connection signal="gui_input" from="UILayer/Control/ChatDipaly/CmdVBoxContainer/CmdLineEdit" to="UILayer/Control/ChatDipaly" method="_on_CmdLineEdit_gui_input"]
 [connection signal="text_entered" from="UILayer/Control/ChatDipaly/CmdVBoxContainer/CmdLineEdit" to="UILayer/Control/ChatDipaly" method="_on_CmdLineEdit_text_entered"]
+[connection signal="pressed" from="UILayer/Control/SummaryPanel/MainMenuButton" to="UILayer/Control/SummaryPanel" method="_on_MainMenuButton_pressed"]
+[connection signal="pressed" from="UILayer/Control/SummaryPanel/RestartButton" to="UILayer/Control/SummaryPanel" method="_on_RestartButton_pressed"]
+[connection signal="pressed" from="UILayer/Control/PausePanel/MainMenuButton" to="UILayer/Control/PausePanel" method="_on_MainMenuButton_pressed"]
+[connection signal="pressed" from="UILayer/Control/PausePanel/RestartButton" to="UILayer/Control/PausePanel" method="_on_RestartButton_pressed"]
