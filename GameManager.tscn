@@ -52,11 +52,17 @@ __meta__ = {
 [node name="MainMenu" type="Control" parent="UILayer/Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Panel" type="Panel" parent="UILayer/Control/MainMenu"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_styles/panel = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Title" type="TextureRect" parent="UILayer/Control/MainMenu"]
 anchor_top = 0.069
@@ -108,6 +114,7 @@ anchor_top = 1.0
 anchor_bottom = 1.0
 margin_top = -349.0
 margin_right = 556.0
+mouse_filter = 2
 theme = SubResource( 3 )
 script = ExtResource( 3 )
 __meta__ = {
@@ -455,7 +462,7 @@ margin_left = 76.0
 margin_right = 354.0
 margin_bottom = 46.0
 size_flags_horizontal = 3
-text = "192.168.1.3"
+text = "localhost"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="UILayer/Control/ConnectToHostDialog/VBoxContainer"]
 margin_top = 50.0
@@ -473,10 +480,16 @@ margin_left = 100.0
 margin_right = 354.0
 margin_bottom = 46.0
 size_flags_horizontal = 3
+[connection signal="pressed" from="UILayer/Control/MainMenu/VBoxContainer/ServerButton" to="." method="_on_ServerButton_pressed"]
+[connection signal="pressed" from="UILayer/Control/MainMenu/VBoxContainer/ClientButton" to="." method="_on_ClientButton_pressed"]
+[connection signal="pressed" from="UILayer/Control/MainMenu/VBoxContainer/QuitButton" to="." method="_on_QuitButton_pressed"]
 [connection signal="command_entered" from="UILayer/Control/ChatDipaly" to="." method="_on_ChatDipaly_command_entered"]
 [connection signal="gui_input" from="UILayer/Control/ChatDipaly/CmdVBoxContainer/CmdLineEdit" to="UILayer/Control/ChatDipaly" method="_on_CmdLineEdit_gui_input"]
 [connection signal="text_entered" from="UILayer/Control/ChatDipaly/CmdVBoxContainer/CmdLineEdit" to="UILayer/Control/ChatDipaly" method="_on_CmdLineEdit_text_entered"]
 [connection signal="pressed" from="UILayer/Control/SummaryPanel/MainMenuButton" to="UILayer/Control/SummaryPanel" method="_on_MainMenuButton_pressed"]
 [connection signal="pressed" from="UILayer/Control/SummaryPanel/RestartButton" to="UILayer/Control/SummaryPanel" method="_on_RestartButton_pressed"]
+[connection signal="go_to_main_menu" from="UILayer/Control/PausePanel" to="." method="_on_PausePanel_go_to_main_menu"]
 [connection signal="pressed" from="UILayer/Control/PausePanel/MainMenuButton" to="UILayer/Control/PausePanel" method="_on_MainMenuButton_pressed"]
 [connection signal="pressed" from="UILayer/Control/PausePanel/RestartButton" to="UILayer/Control/PausePanel" method="_on_RestartButton_pressed"]
+[connection signal="confirmed" from="UILayer/Control/CreateHostDialog" to="." method="_on_CreateHostDialog_confirmed"]
+[connection signal="confirmed" from="UILayer/Control/ConnectToHostDialog" to="." method="_on_ConnectToHostDialog_confirmed"]
