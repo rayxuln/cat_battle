@@ -97,7 +97,11 @@ func set_main_player_manager(p):
 	main_player_manger = p
 
 func add_server_side_player():
-	pass
+	network_manager.network_peer_connected(1)
+	var c = network_manager.client_proxy_map[1]
+	c.player_manager.set_player_name(player_name)
+	set_main_player_manager(c.player_manager)
+	main_player_manger.ready_for_competition = true
 
 func set_game_manager(gm):
 	game_manager = gm

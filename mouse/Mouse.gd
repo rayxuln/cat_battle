@@ -113,7 +113,8 @@ remotesync func rpc_play_in_anime():
 
 #----- Animation Events -----
 func _on_die_done():
-	queue_free()
+	if get_tree().is_network_server():
+		queue_free()
 	
 	
 	

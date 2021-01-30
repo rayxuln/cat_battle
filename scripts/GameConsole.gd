@@ -21,7 +21,7 @@ func send_chat(s, sender=null):
 	if sender == null:
 		sender = GameSystem.main_player_manger
 	if sender:
-		var nid = sender.get_node("NetworkIndentifier").network_id
+		var nid = sender.get_node("NetworkIdentifier").network_id
 		rpc_id(1, "rpc_send_chat", nid, s)
 	else:
 		send_msg(s)

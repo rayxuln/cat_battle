@@ -272,3 +272,60 @@ script = ExtResource( 2 )
 [node name="MouseSpawner5" type="Position2D" parent="MouseSpawners"]
 position = Vector2( 576.634, 195.045 )
 script = ExtResource( 2 )
+
+[node name="CatSpawnPoints" type="Node2D" parent="."]
+
+[node name="CatSpawnPpoint" type="Position2D" parent="CatSpawnPoints" groups=[
+"cat_spawn_point",
+]]
+position = Vector2( -218, 212 )
+
+[node name="CatSpawnPpoint2" type="Position2D" parent="CatSpawnPoints" groups=[
+"cat_spawn_point",
+]]
+position = Vector2( 286, -62 )
+
+[node name="CatSpawnPpoint3" type="Position2D" parent="CatSpawnPoints" groups=[
+"cat_spawn_point",
+]]
+position = Vector2( 678, 130 )
+
+[node name="CatSpawnPpoint4" type="Position2D" parent="CatSpawnPoints" groups=[
+"cat_spawn_point",
+]]
+position = Vector2( 252, 702 )
+
+[node name="CatSpawnPpoint5" type="Position2D" parent="CatSpawnPoints" groups=[
+"cat_spawn_point",
+]]
+position = Vector2( 698, 404 )
+
+[node name="CatSpawnPpoint6" type="Position2D" parent="CatSpawnPoints" groups=[
+"cat_spawn_point",
+]]
+position = Vector2( 1142, 288 )
+
+[node name="CatSpawnPpoint7" type="Position2D" parent="CatSpawnPoints" groups=[
+"cat_spawn_point",
+]]
+position = Vector2( 952, 750 )
+
+[node name="CatSpawnPpoint8" type="Position2D" parent="CatSpawnPoints" groups=[
+"cat_spawn_point",
+]]
+position = Vector2( -252, 808 )
+
+[node name="CatSpawnPpoint9" type="Position2D" parent="CatSpawnPoints" groups=[
+"cat_spawn_point",
+]]
+position = Vector2( -312, -116 )
+
+[node name="CatSpawnPpoint10" type="Position2D" parent="CatSpawnPoints" groups=[
+"cat_spawn_point",
+]]
+position = Vector2( 1112, -118 )
+
+[node name="CatSpawnPpoint11" type="Position2D" parent="CatSpawnPoints" groups=[
+"cat_spawn_point",
+]]
+position = Vector2( 658, -68 )

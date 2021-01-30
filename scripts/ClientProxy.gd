@@ -24,7 +24,10 @@ func is_server():
 	return peer_id == 1
 
 func add_player_manager():
-	pass
+	var PlayerManager = preload("res://player_manager/PlayerManager.tscn")
+	player_manager = GameSystem.instance_network_node(PlayerManager)
+	player_manager.set_network_master(peer_id)
+	GameSystem.game_manager.world.add_child(player_manager)
 
 func add_exist_nodes(exclude=[]):
 	if is_server():

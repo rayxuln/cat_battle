@@ -8,7 +8,7 @@
 [sub_resource type="CircleShape2D" id=1]
 radius = 15.1033
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=2]
 resource_name = "die"
 tracks/0/type = "value"
 tracks/0/path = NodePath("Body:frame")
@@ -37,8 +37,7 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "idle"
+[sub_resource type="Animation" id=3]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Body:frame")
 tracks/0/interp = 1
@@ -52,7 +51,7 @@ tracks/0/keys = {
 "values": [ 0 ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=4]
 resource_name = "in"
 length = 0.9
 tracks/0/type = "value"
@@ -82,8 +81,7 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "out"
+[sub_resource type="Animation" id=5]
 length = 0.9
 tracks/0/type = "value"
 tracks/0/path = NodePath("Body:frame")
@@ -98,8 +96,7 @@ tracks/0/keys = {
 "values": [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
 }
 
-[sub_resource type="Animation" id=4]
-resource_name = "walk_left"
+[sub_resource type="Animation" id=6]
 length = 0.4
 loop = true
 tracks/0/type = "value"
@@ -127,8 +124,7 @@ tracks/1/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=5]
-resource_name = "walk_right"
+[sub_resource type="Animation" id=7]
 length = 0.4
 loop = true
 tracks/0/type = "value"
@@ -238,7 +234,6 @@ script = ExtResource( 1 )
 position = Vector2( 0, -45.4597 )
 texture = ExtResource( 2 )
 hframes = 25
-frame = 12
 
 [node name="Shadow" type="Sprite" parent="."]
 position = Vector2( 0, -20.7655 )
@@ -258,12 +253,12 @@ position = Vector2( 36.9995, -12.6134 )
 shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/die = SubResource( 6 )
-anims/idle = SubResource( 2 )
-anims/in = SubResource( 7 )
-anims/out = SubResource( 3 )
-anims/walk_left = SubResource( 4 )
-anims/walk_right = SubResource( 5 )
+anims/die = SubResource( 2 )
+anims/idle = SubResource( 3 )
+anims/in = SubResource( 4 )
+anims/out = SubResource( 5 )
+anims/walk_left = SubResource( 6 )
+anims/walk_right = SubResource( 7 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource( 24 )
