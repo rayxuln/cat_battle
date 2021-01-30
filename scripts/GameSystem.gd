@@ -24,6 +24,7 @@ func _ready():
 	
 	linking_context = LinkingContext.new()
 	
+	randomize()
 
 #----- Methods -----
 func start_as_server(p_name, port:int):
@@ -81,6 +82,11 @@ func stop_game():
 		
 func is_game_started():
 	return game_started
+	
+func instance_network_node(res:PackedScene):
+	var n = res.instance()
+	n.set_meta("_resource_path", res.resource_path)
+	return n
 
 func stop_network():
 	network_manager.queue_free()

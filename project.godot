@@ -69,6 +69,13 @@ display_chat={
 
 pointing/emulate_touch_from_mouse=true
 
+[layer_names]
+
+2d_physics/layer_1="cat"
+2d_physics/layer_2="mouse"
+2d_physics/layer_3="ball"
+2d_physics/layer_4="static_object"
+
 [rendering]
 
 environment/default_environment="res://default_env.tres"
