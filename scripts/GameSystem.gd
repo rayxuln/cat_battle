@@ -18,6 +18,10 @@ var game_started = false
 var competition_manager:Node = null
 
 func _ready():
+	competition_manager = preload("res://scripts/CompetitionManager.gd").new()
+	competition_manager.name = "CompetitionManager"
+	add_child(competition_manager)
+	
 	game_console = preload("res://scripts/GameConsole.gd").new()
 	game_console.name = "GameConsole"
 	add_child(game_console)
@@ -97,6 +101,8 @@ func instance_network_node(res:PackedScene):
 func stop_network():
 	network_manager.queue_free()
 	network_manager = null
+	
+	competition_manager.enable = false
 	
 
 func set_main_player_manager(p):
@@ -198,6 +204,7 @@ func _on_server_started():
 	
 	add_server_side_player()
 	
+	competition_manager.enable = true
 	send_boardcast("> 等待其他玩家加入...")
 
 

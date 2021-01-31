@@ -22,7 +22,7 @@ onready var throw_pos = $RotatePos/ThrowPosition2D
 onready var camera = $Camera2D
 onready var anime_tree = $AnimationTree
 
-var Ball = null
+var Ball = preload("res://ball/Ball.tscn")
 var throwing = false
 var throw_direction = Vector2.RIGHT
 
@@ -236,7 +236,9 @@ remotesync func rpc_play_throw_ball_anime():
 	throwing = true
 
 remotesync func rpc_spawn_curser(p):
-	pass
+	var c = preload("res://curser/Curser.tscn").instance()
+	c.global_position = p
+	GameSystem.game_manager.world.add_child(c)
 
 remote func rpc_set_rotate_pos_scale_x(sx):
 	rotate_pos.scale.x = sx
@@ -245,7 +247,12 @@ func _on_throw_ball():
 	if not get_tree().is_network_server():
 		return
 	
-	GameSystem.send_boardcast("%s向%s抛了个毛球" % [player_manager.player_name, str(throw_direction)])
+#	GameSystem.send_boardcast("%s向%s抛了个毛球" % [player_manager.player_name, str(throw_direction)])
+	var ball = GameSystem.instance_network_node(Ball)
+	ball.global_position = throw_pos.global_position
+	ball.move_direction = throw_direction
+	ball.attacker = self
+	GameSystem.game_manager.world.add_child(ball)
 
 func _on_throw_done():
 	throwing = false

@@ -45,7 +45,7 @@ func gen_summary_stats(winner):
 	var res = {}
 	res.winner = winner.player_manager.player_name
 	res.winner_pid = winner.player_manager.get_network_master()
-	res.mouse_count = player_manager.cat_mouse_count
+	res.mouse_count = player_manager.cat.mouse_count
 	res.defeated_cats = player_manager.cat.defeated_cats.duplicate()
 	return res
 
