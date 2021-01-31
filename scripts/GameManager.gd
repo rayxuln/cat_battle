@@ -12,7 +12,7 @@ onready var main_menu:Control = $UILayer/Control/MainMenu
 onready var create_host_dialog:AcceptDialog = $UILayer/Control/CreateHostDialog
 onready var connect_to_host_dialog:AcceptDialog = $UILayer/Control/ConnectToHostDialog
 onready var screen_touch_ui:Control
-onready var sound_player:AudioStreamPlayer
+onready var sound_player:AudioStreamPlayer = $AudioStreamPlayer
 
 func _ready():
 	GameSystem.set_game_manager(self)
@@ -53,6 +53,18 @@ func hide_panels():
 func show_summary_panel(stats):
 	summary_panel.set_stats(stats)
 	summary_panel.visible = true
+
+func play_button_sound():
+	sound_player.stream = preload("res://sounds/button.wav")
+	sound_player.play()
+
+func play_pause_sound(v:bool):
+	if v:
+		sound_player.stream = preload("res://sounds/pause_in.wav")
+	else:
+		sound_player.stream = preload("res://sounds/pause_out.wav")
+	
+	sound_player.play()
 #----- Signals -----
 func _on_ChatDipaly_command_entered(cmd):
 	GameSystem.send_cmd(cmd)
@@ -60,24 +72,32 @@ func _on_ChatDipaly_command_entered(cmd):
 
 func _on_ServerButton_pressed():
 	show_create_host_dialog()
+	play_button_sound()
 
 func _on_ClientButton_pressed():
 	show_connect_to_host_dialog()
+	play_button_sound()
 
 func _on_QuitButton_pressed():
+	play_button_sound()
+	
 	get_tree().quit(0)
 
 
 func _on_CreateHostDialog_confirmed():
+	play_button_sound()
 	GameSystem.start_as_server(create_host_dialog.player_name.text, create_host_dialog.get_port())
 	
 
 func _on_ConnectToHostDialog_confirmed():
+	play_button_sound()
 	GameSystem.start_as_client(connect_to_host_dialog.player_name.text, connect_to_host_dialog.get_address(), connect_to_host_dialog.get_port())
 	
 	
 
 func _on_PausePanel_go_to_main_menu():
+	play_button_sound()
+	
 	GameSystem.stop_game()
 	GameSystem.stop_network()
 	
@@ -86,6 +106,8 @@ func _on_PausePanel_go_to_main_menu():
 
 
 func _on_SummaryPanel_go_to_main_menu():
+	play_button_sound()
+	
 	GameSystem.stop_game()
 	GameSystem.stop_network()
 	
@@ -94,17 +116,21 @@ func _on_SummaryPanel_go_to_main_menu():
 
 
 func _on_SummaryPanel_restart():
+	play_button_sound()
+	
 	GameSystem.main_player_manger.respawn_cat()
 	GameSystem.main_player_manger.enable_input = true
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+func _on_ChatDipaly_history_hide():
+	if GameSystem.main_player_manger:
+		GameSystem.main_player_manger.enable_input = true
+
+
+func _on_ChatDipaly_history_show():
+	if GameSystem.main_player_manger:
+		GameSystem.main_player_manger.enable_input = false
+
+
+func _on_PausePanel_visibility_changed():
+	play_pause_sound(pause_panel.visible)

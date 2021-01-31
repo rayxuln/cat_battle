@@ -54,6 +54,20 @@ tracks/1/keys = {
 "method": "_on_catch_done"
 } ]
 }
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "play_catch_sound"
+} ]
+}
 
 [sub_resource type="Animation" id=7]
 resource_name = "dead"
@@ -81,6 +95,20 @@ tracks/1/keys = {
 "values": [ {
 "args": [  ],
 "method": "_on_dead_done"
+} ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "play_dead_sound"
 } ]
 }
 
@@ -111,6 +139,20 @@ tracks/1/keys = {
 "values": [ {
 "args": [  ],
 "method": "_on_hurt_done"
+} ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "play_hurt_sound"
 } ]
 }
 
@@ -159,6 +201,20 @@ tracks/1/keys = {
 }, {
 "args": [  ],
 "method": "_on_throw_done"
+} ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.4 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "play_throw_sound"
 } ]
 }
 
@@ -319,6 +375,7 @@ script = ExtResource( 1 )
 position = Vector2( 0, -55.9559 )
 texture = ExtResource( 2 )
 hframes = 23
+frame = 5
 
 [node name="ThrowPosition2D" type="Position2D" parent="RotatePos"]
 position = Vector2( 25.2269, -59.2832 )
@@ -391,3 +448,5 @@ parameters/playback = SubResource( 37 )
 parameters/conditions/not_walk = false
 parameters/conditions/walk = false
 parameters/walk/blend_position = 1.0
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]

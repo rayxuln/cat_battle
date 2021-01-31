@@ -55,7 +55,17 @@ func _physics_process(delta):
 	
 	if get_tree().is_network_server():
 		process_move_list()
+
+func _unhandled_input(event):
+	if not is_network_master():
+		return
 	
+	if event is InputEventScreenTouch:
+		if event.pressed:
+			touch_global_position = event.position + cat.camera.get_camera_screen_center() - cat.get_viewport_rect().size / 2.0
+			Input.action_press("throw")
+		else:
+			Input.action_release("throw")
 #----- Methods -----
 func synchronize(pid):
 	GameSystem.set_remote_node_reference(pid, self, "cat", cat)
@@ -96,7 +106,7 @@ func fetch_input(delta):
 	
 	get_input(input, "collect")
 	get_input(input, "throw")
-	input["mouse_pos"] = cat.get_global_mouse_position()
+	input["mouse_pos"] = touch_global_position
 	input["input_vec"] = input_vec
 	
 	move_list.add_move(input, OS.get_system_time_msecs())

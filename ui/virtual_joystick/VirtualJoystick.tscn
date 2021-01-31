@@ -1,0 +1,42 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://ui/virtual_joystick/VirtualJoystick.gd" type="Script" id=1]
+[ext_resource path="res://ui/virtual_joystick/ditu.png" type="Texture" id=2]
+[ext_resource path="res://ui/virtual_joystick/gan.png" type="Texture" id=3]
+
+[node name="VirtualJoystick" type="Control"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 164.023
+margin_top = -148.439
+margin_right = 164.023
+margin_bottom = -148.439
+script = ExtResource( 1 )
+action_name_up = "move_up"
+action_name_down = "move_down"
+action_name_left = "move_left"
+action_name_right = "move_right"
+
+[node name="Background" type="TextureRect" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -64.0
+margin_top = -64.0
+margin_right = 64.0
+margin_bottom = 64.0
+texture = ExtResource( 2 )
+expand = true
+
+[node name="Thumb" type="TextureRect" parent="Background"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -25.0
+margin_top = -25.0
+margin_right = 25.0
+margin_bottom = 25.0
+texture = ExtResource( 3 )
+[connection signal="gui_input" from="." to="." method="_on_VirtualJoystick_gui_input"]

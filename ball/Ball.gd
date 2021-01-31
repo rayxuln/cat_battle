@@ -23,8 +23,9 @@ func self_destruction():
 	get_tree().create_timer(life_time).connect("timeout", self, "play_crash_anime")
 
 func play_crash_anime():
-	is_crashing = true
-	rpc("rpc_play_crash_anime")
+	if not is_crashing:
+		is_crashing = true
+		rpc("rpc_play_crash_anime")
 #----- RPCs -----
 remote func rpc_init_ball(gp, md):
 	global_position = gp

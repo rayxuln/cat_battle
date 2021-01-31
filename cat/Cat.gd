@@ -21,6 +21,7 @@ onready var rotate_pos = $RotatePos
 onready var throw_pos = $RotatePos/ThrowPosition2D
 onready var camera = $Camera2D
 onready var anime_tree = $AnimationTree
+onready var sound_player = $AudioStreamPlayer2D
 
 var Ball = preload("res://ball/Ball.tscn")
 var throwing = false
@@ -178,6 +179,22 @@ func enable_collision():
 func spawn_curser(p):
 	var pid = player_manager.get_network_master()
 	rpc_id(pid, "rpc_spawn_curser", p)
+	
+func play_sound(sound):
+	sound_player.stream = sound
+	sound_player.play()
+
+func play_throw_sound():
+	play_sound(preload("res://sounds/throw.wav"))
+
+func play_catch_sound():
+	play_sound(preload("res://sounds/catch.wav"))
+
+func play_dead_sound():
+	play_sound(preload("res://sounds/cat_dead.wav"))
+	
+func play_hurt_sound():
+	play_sound(preload("res://sounds/hit2.wav"))
 
 #----- RPCs -----
 remote func rpc_set_anime_cond(walk, walk_blend_position):

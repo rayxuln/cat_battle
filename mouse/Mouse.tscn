@@ -36,6 +36,23 @@ tracks/1/keys = {
 "method": "_on_die_done"
 } ]
 }
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "play_hurt_sound"
+}, {
+"args": [  ],
+"method": "play_dead_sound"
+} ]
+}
 
 [sub_resource type="Animation" id=3]
 tracks/0/type = "value"
@@ -234,6 +251,7 @@ script = ExtResource( 1 )
 position = Vector2( 0, -45.4597 )
 texture = ExtResource( 2 )
 hframes = 25
+frame = 14
 
 [node name="Shadow" type="Sprite" parent="."]
 position = Vector2( 0, -20.7655 )
@@ -266,3 +284,5 @@ anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/playback = SubResource( 25 )
 parameters/walk/blend_position = Vector2( -1, 0 )
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]

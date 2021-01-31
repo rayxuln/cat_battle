@@ -14,6 +14,7 @@ var moving = false
 var dying = false
 
 onready var anime_tree = $AnimationTree
+onready var sound_player = $AudioStreamPlayer2D
 
 func _ready():
 	if get_tree().is_network_server():
@@ -44,6 +45,13 @@ func _physics_process(delta):
 	if moving:
 		move()
 
+func play_dead_sound():
+	sound_player.stream = preload("res://sounds/mouse_dead.wav")
+	sound_player.play()
+
+func play_hurt_sound():
+	sound_player.stream = preload("res://sounds/hit1.wav")
+	sound_player.play()
 #----- Methods -----
 func synchronize(pid):
 	rset_id(pid, "global_position", global_position)
