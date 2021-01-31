@@ -145,9 +145,7 @@ __meta__ = {
 }
 
 [node name="HistoryScrollContainer" type="ScrollContainer" parent="UILayer/Control/ChatDipaly/CmdVBoxContainer"]
-margin_top = 12.0
 margin_right = 556.0
-margin_bottom = 12.0
 grow_vertical = 0
 size_flags_horizontal = 11
 size_flags_vertical = 10
@@ -162,9 +160,9 @@ size_flags_horizontal = 11
 size_flags_vertical = 8
 
 [node name="CmdLineEdit" type="LineEdit" parent="UILayer/Control/ChatDipaly/CmdVBoxContainer"]
-margin_top = 16.0
+margin_top = 4.0
 margin_right = 556.0
-margin_bottom = 62.0
+margin_bottom = 50.0
 
 [node name="HUD" type="Control" parent="UILayer/Control"]
 anchor_right = 0.438
@@ -486,6 +484,8 @@ size_flags_horizontal = 3
 [connection signal="command_entered" from="UILayer/Control/ChatDipaly" to="." method="_on_ChatDipaly_command_entered"]
 [connection signal="gui_input" from="UILayer/Control/ChatDipaly/CmdVBoxContainer/CmdLineEdit" to="UILayer/Control/ChatDipaly" method="_on_CmdLineEdit_gui_input"]
 [connection signal="text_entered" from="UILayer/Control/ChatDipaly/CmdVBoxContainer/CmdLineEdit" to="UILayer/Control/ChatDipaly" method="_on_CmdLineEdit_text_entered"]
+[connection signal="go_to_main_menu" from="UILayer/Control/SummaryPanel" to="." method="_on_SummaryPanel_go_to_main_menu"]
+[connection signal="restart" from="UILayer/Control/SummaryPanel" to="." method="_on_SummaryPanel_restart"]
 [connection signal="pressed" from="UILayer/Control/SummaryPanel/MainMenuButton" to="UILayer/Control/SummaryPanel" method="_on_MainMenuButton_pressed"]
 [connection signal="pressed" from="UILayer/Control/SummaryPanel/RestartButton" to="UILayer/Control/SummaryPanel" method="_on_RestartButton_pressed"]
 [connection signal="go_to_main_menu" from="UILayer/Control/PausePanel" to="." method="_on_PausePanel_go_to_main_menu"]

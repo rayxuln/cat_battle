@@ -50,7 +50,7 @@ func _process(delta):
 func synchronize(pid):
 	rset_id(pid, "global_position", global_position)
 	
-	rset_id(pid, "player_manager", player_manager)
+	GameSystem.set_remote_node_reference(pid, self, "player_manager", player_manager)
 	rpc_id(pid, "rpc_set_health", health)
 	rpc_id(pid, "rpc_set_mouse_count", mouse_count)
 	
@@ -235,7 +235,7 @@ remotesync func rpc_play_throw_ball_anime():
 	anime_tree["parameters/playback"].travel("throw")
 	throwing = true
 
-remotesync func rpc_spawn_curser():
+remotesync func rpc_spawn_curser(p):
 	pass
 
 remote func rpc_set_rotate_pos_scale_x(sx):

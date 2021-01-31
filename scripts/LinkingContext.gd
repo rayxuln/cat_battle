@@ -1,4 +1,4 @@
-extends Node
+extends Reference
 
 class_name LinkingContext
 
@@ -32,9 +32,27 @@ func get_node(id):
 	return null
 
 
+func append_property_hook(nid, target:Node, property:String, value, is_nid:bool=false):
+	if not id_property_map.has(nid):
+		id_property_map[nid] = []
+	
+	id_property_map[nid].append({
+		"target":target,
+		"property":property,
+		"value":value,
+		"is_nid":is_nid
+	})
 
-
-
+func invoke_property_hooks(n:Node):
+	var nid = n.get_node("NetworkIdentifier").network_id
+	if id_property_map.has(nid):
+		var ps = id_property_map[nid]
+		for p in ps:
+			if p.is_nid:
+				p.value = get_node(p.value)
+			if p.target == null:
+				n.set(p.property, p.value)
+		id_property_map.erase(nid)
 
 
 

@@ -23,6 +23,7 @@ func _ready():
 	add_child(game_console)
 	
 	linking_context = LinkingContext.new()
+	linking_context.connect("network_node_added", self, "_on_network_node_added")
 	
 	randomize()
 
@@ -66,6 +67,11 @@ func load_world():
 	game_manager.world = w
 	game_manager.move_child(w, 0)
 
+func set_remote_node_reference(pid, target:Node, property, value:Node):
+	var t_nid = target.get_node("NetworkIdentifier").network_id
+	var v_nid = value.get_node("NetworkIdentifier").network_id
+	rpc_id(pid, "rpc_set_node_reference", t_nid, property, v_nid)
+
 func start_game():
 	load_world()
 	
@@ -95,6 +101,8 @@ func stop_network():
 
 func set_main_player_manager(p):
 	main_player_manger = p
+	main_player_manger.cat.camera.make_current()
+	
 
 func add_server_side_player():
 	network_manager.network_peer_connected(1)
@@ -136,7 +144,22 @@ remote func rpc_remove_node(nid):
 	if n:
 		n.queue_free()
 
+remote func rpc_set_node_reference(t_nid, property, v_nid):
+	var target = linking_context.get_node(t_nid)
+	var value = linking_context.get_node(v_nid)
+	if value == null:
+		linking_context.append_property_hook(v_nid, target, property, v_nid, true)
+	else:
+		target.set(property, value)
+
+remotesync func rpc_show_summary(stats):
+	main_player_manger.enable_input = false
+	game_manager.show_summary_panel(stats)
+	
 #----- Signals -----
+func _on_network_node_added(nid, node:Node):
+	linking_context.invoke_property_hooks(node)
+
 func _on_connected_to_server():
 	game_manager.hide_ui()
 	game_manager.show_hud()

@@ -4,7 +4,7 @@ extends Node
 onready var world:Node = null
 onready var player_name_label:Label = $UILayer/Control/HUD/Group1/PlayerNameLabel
 onready var player_heart_group = $UILayer/Control/HUD/Group1/HeartGroup
-onready var play_mouse_count_label:Label = $UILayer/Control/HUD/Group2/MouseCountLabel
+onready var player_mouse_count_label:Label = $UILayer/Control/HUD/Group2/MouseCountLabel
 onready var summary_panel:Panel = $UILayer/Control/SummaryPanel
 onready var chat_display = $UILayer/Control/ChatDipaly
 onready var pause_panel:Panel = $UILayer/Control/PausePanel
@@ -50,7 +50,9 @@ func hide_panels():
 	summary_panel.visible = false
 	pause_panel.visible = false
 	
-
+func show_summary_panel(stats):
+	summary_panel.set_stats(stats)
+	summary_panel.visible = true
 #----- Signals -----
 func _on_ChatDipaly_command_entered(cmd):
 	GameSystem.send_cmd(cmd)
@@ -81,3 +83,28 @@ func _on_PausePanel_go_to_main_menu():
 	
 	show_ui()
 	hide_hud()
+
+
+func _on_SummaryPanel_go_to_main_menu():
+	GameSystem.stop_game()
+	GameSystem.stop_network()
+	
+	show_ui()
+	hide_hud()
+
+
+func _on_SummaryPanel_restart():
+	GameSystem.main_player_manger.respawn_cat()
+	GameSystem.main_player_manger.enable_input = true
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

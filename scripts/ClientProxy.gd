@@ -41,7 +41,17 @@ func add_exist_nodes(exclude=[]):
 		if not node in exclude:
 			node.synchronize(peer_id)
 
+func gen_summary_stats(winner):
+	var res = {}
+	res.winner = winner.player_manager.player_name
+	res.winner_pid = winner.player_manager.get_network_master()
+	res.mouse_count = player_manager.cat_mouse_count
+	res.defeated_cats = player_manager.cat.defeated_cats.duplicate()
+	return res
 
+func show_summary(winner):
+	player_manager.ready_for_competition = false
+	GameSystem.rpc_id(peer_id, "rpc_show_summary", gen_summary_stats(winner))
 #----- Signals -----
 func _on_network_node_added(nid, node:Node):
 	if is_server():

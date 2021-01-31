@@ -7,16 +7,16 @@
 [ext_resource path="res://default_font.tres" type="DynamicFont" id=5]
 [ext_resource path="res://cat/Cat.gd" type="Script" id=6]
 
-[sub_resource type="CircleShape2D" id=4]
+[sub_resource type="CircleShape2D" id=1]
 radius = 16.0365
 
-[sub_resource type="StyleBoxFlat" id=1]
+[sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 1, 0, 0, 1 )
 
-[sub_resource type="StyleBoxFlat" id=2]
+[sub_resource type="StyleBoxFlat" id=3]
 bg_color = Color( 0.2, 0.2, 0.2, 1 )
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=4]
 size = 4
 
 [sub_resource type="CircleShape2D" id=5]
@@ -235,27 +235,23 @@ animation = "idle"
 [sub_resource type="AnimationNodeAnimation" id=17]
 animation = "throw"
 
-[sub_resource type="AnimationNodeAnimation" id=36]
+[sub_resource type="AnimationNodeAnimation" id=18]
 animation = "walk_left"
 
-[sub_resource type="AnimationNodeAnimation" id=37]
+[sub_resource type="AnimationNodeAnimation" id=19]
 animation = "walk_right"
 
-[sub_resource type="AnimationNodeBlendSpace1D" id=18]
-blend_point_0/node = SubResource( 36 )
+[sub_resource type="AnimationNodeBlendSpace1D" id=20]
+blend_point_0/node = SubResource( 18 )
 blend_point_0/pos = -0.1
-blend_point_1/node = SubResource( 37 )
+blend_point_1/node = SubResource( 19 )
 blend_point_1/pos = 0.1
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=19]
+[sub_resource type="AnimationNodeStateMachineTransition" id=21]
 advance_condition = "walk"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=20]
-advance_condition = "not_walk"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=21]
-
 [sub_resource type="AnimationNodeStateMachineTransition" id=22]
+advance_condition = "not_walk"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=23]
 
@@ -272,20 +268,24 @@ advance_condition = "not_walk"
 [sub_resource type="AnimationNodeStateMachineTransition" id=29]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=30]
-switch_mode = 2
-auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=31]
-switch_mode = 2
-auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=32]
 switch_mode = 2
 auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=33]
+switch_mode = 2
+auto_advance = true
 
-[sub_resource type="AnimationNodeStateMachine" id=34]
+[sub_resource type="AnimationNodeStateMachineTransition" id=34]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=35]
+
+[sub_resource type="AnimationNodeStateMachine" id=36]
 states/catch/node = SubResource( 13 )
 states/catch/position = Vector2( 344, 313 )
 states/dead/node = SubResource( 14 )
@@ -296,17 +296,18 @@ states/idle/node = SubResource( 16 )
 states/idle/position = Vector2( 329, 101 )
 states/throw/node = SubResource( 17 )
 states/throw/position = Vector2( 349, -83 )
-states/walk/node = SubResource( 18 )
+states/walk/node = SubResource( 20 )
 states/walk/position = Vector2( 702, 106 )
-transitions = [ "idle", "walk", SubResource( 19 ), "walk", "idle", SubResource( 20 ), "walk", "dead", SubResource( 21 ), "idle", "dead", SubResource( 22 ), "idle", "throw", SubResource( 23 ), "walk", "throw", SubResource( 24 ), "throw", "dead", SubResource( 25 ), "idle", "catch", SubResource( 26 ), "walk", "catch", SubResource( 27 ), "walk", "hurt", SubResource( 28 ), "idle", "hurt", SubResource( 29 ), "throw", "idle", SubResource( 30 ), "catch", "idle", SubResource( 31 ), "hurt", "idle", SubResource( 32 ), "dead", "idle", SubResource( 33 ) ]
+transitions = [ "idle", "walk", SubResource( 21 ), "walk", "idle", SubResource( 22 ), "walk", "dead", SubResource( 23 ), "idle", "dead", SubResource( 24 ), "idle", "throw", SubResource( 25 ), "walk", "throw", SubResource( 26 ), "throw", "dead", SubResource( 27 ), "idle", "catch", SubResource( 28 ), "walk", "catch", SubResource( 29 ), "walk", "hurt", SubResource( 30 ), "idle", "hurt", SubResource( 31 ), "throw", "idle", SubResource( 32 ), "catch", "idle", SubResource( 33 ), "hurt", "idle", SubResource( 34 ), "dead", "idle", SubResource( 35 ) ]
 start_node = "idle"
 graph_offset = Vector2( 109, -42.2171 )
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=35]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=37]
 
 [node name="Cat" type="KinematicBody2D" groups=[
 "cat",
 ]]
+collision_mask = 9
 script = ExtResource( 6 )
 
 [node name="NetworkIdentifier" type="Node" parent="."]
@@ -318,16 +319,17 @@ script = ExtResource( 1 )
 position = Vector2( 0, -55.9559 )
 texture = ExtResource( 2 )
 hframes = 23
-frame = 7
 
 [node name="ThrowPosition2D" type="Position2D" parent="RotatePos"]
 position = Vector2( 25.2269, -59.2832 )
 
 [node name="CollectArea2D" type="Area2D" parent="RotatePos"]
 position = Vector2( 13.6646, -10.0908 )
+collision_layer = 0
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RotatePos/CollectArea2D"]
-shape = SubResource( 4 )
+shape = SubResource( 1 )
 
 [node name="Shadow" type="Sprite" parent="."]
 position = Vector2( 0, -24.5407 )
@@ -355,9 +357,9 @@ margin_left = -47.0
 margin_top = 3.0
 margin_right = 46.0
 margin_bottom = 10.0
-custom_styles/fg = SubResource( 1 )
-custom_styles/bg = SubResource( 2 )
-custom_fonts/font = SubResource( 3 )
+custom_styles/fg = SubResource( 2 )
+custom_styles/bg = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 value = 12.0
 percent_visible = false
 script = ExtResource( 3 )
@@ -382,9 +384,10 @@ anims/walk_left = SubResource( 11 )
 anims/walk_right = SubResource( 12 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 34 )
+tree_root = SubResource( 36 )
 anim_player = NodePath("../AnimationPlayer")
-parameters/playback = SubResource( 35 )
+active = true
+parameters/playback = SubResource( 37 )
 parameters/conditions/not_walk = false
 parameters/conditions/walk = false
 parameters/walk/blend_position = 1.0
