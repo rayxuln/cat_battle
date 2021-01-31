@@ -19,6 +19,18 @@ func _ready():
 	show_ui()
 	hide_hud()
 	hide_panels()
+	
+	if OS.has_feature("Server") or "--server" in OS.get_cmdline_args():
+		var args = OS.get_cmdline_args()
+		var port = GameSystem.default_port
+		for arg in args:
+			if arg.find("port") > -1:
+				var ps = arg.split("=")
+				if ps.size() > 1:
+					port = int(ps[1])
+		GameSystem.send_boardcast("正在启动服务器：%d" % port)
+		yield(get_tree().create_timer(1), "timeout")
+		GameSystem.start_as_server("Server", port)
 
 func _process(delta):
 	if GameSystem.is_game_started() and Input.is_action_just_pressed("ui_cancel"):

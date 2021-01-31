@@ -5,6 +5,8 @@ var console_ui:Node = null
 
 #----- Methods -----
 func send_msg(s):
+	if OS.has_feature("Server") or "--server" in OS.get_cmdline_args():
+		print(s)
 	console_ui.add_label(s)
 
 func send_feedback(s, sender):
@@ -27,7 +29,7 @@ func send_chat(s, sender=null):
 		send_msg(s)
 
 func send_boardcast(s):
-	if not GameSystem.main_player_manger:
+	if not GameSystem.is_game_started():
 		send_msg(s)
 		return
 	rpc_id(1, "rpc_send_boardcast", s)

@@ -31,6 +31,11 @@ func _ready():
 	
 	randomize()
 
+func _notification(what):
+	if what == NOTIFICATION_WM_GO_BACK_REQUEST:
+		Input.action_press("ui_cancel")
+		yield(get_tree().create_timer(0.5), "timeout")
+		Input.action_release("ui_cancel")
 #----- Methods -----
 func start_as_server(p_name, port:int):
 	if network_manager != null:
@@ -202,7 +207,8 @@ func _on_server_started():
 	
 	start_game()
 	
-	add_server_side_player()
+	if not OS.has_feature("Server") and not "--server" in OS.get_cmdline_args():
+		add_server_side_player()
 	
 	competition_manager.enable = true
 	send_boardcast("> 等待其他玩家加入...")
